@@ -2,8 +2,8 @@ services:
   miab:
     image: pschmitt/mailinabox:latest
     container_name: miab
-    hostname: mail.kangwee.com
-    domainname: kangwee.com
+    hostname: ${PRIMARY_HOSTNAME}
+    domainname: ${DOMAIN_NAME}
     restart: unless-stopped
     ports:
       # SMTP
@@ -19,10 +19,12 @@ services:
       - miab_data:/home
       - /etc/localtime:/etc/localtime:ro
     environment:
-      - PRIMARY_HOSTNAME=mail.kangwee.com
-      - STORAGE_ROOT=/home/user-data/mail
-      - STORAGE_USER=user-data
-      - ADMIN_EMAIL=admin@yourdomain.com
+      - PRIMARY_HOSTNAME=${PRIMARY_HOSTNAME}
+      - STORAGE_ROOT=${STORAGE_ROOT}
+      - STORAGE_USER=${STORAGE_USER}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+    env_file:
+      - .env
 
 volumes:
   miab_data:
