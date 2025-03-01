@@ -1,6 +1,6 @@
 services:
   miab:
-    image: pschmitt/mailinabox:latest
+    image: hardware/mailinabox:latest
     container_name: miab
     hostname: ${PRIMARY_HOSTNAME}
     domainname: ${DOMAIN_NAME}
